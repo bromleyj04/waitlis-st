@@ -11,6 +11,12 @@ import {
   TerminalSquare
 } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
+import { PromptCopyButtons } from "@/components/prompt-copy-buttons";
+import {
+  setupPrompt,
+  setupPromptPreview,
+  setupPromptVersion
+} from "@/content/setup-prompt";
 
 const screenshots = [
   {
@@ -72,9 +78,6 @@ const launchSteps = [
     detail: "The open-source kit stays yours to customize."
   }
 ];
-
-const setupPrompt =
-  "Use the ExitOS Waitlist Kit as the foundation for my Validation waitlist. First understand my product, positioning, ideal customer, offer, survey questions, referral incentive, and preferred theme. Configure the existing boilerplate rather than redesigning it.";
 
 const roadmap = [
   "Connect Notion OAuth onboarding",
@@ -277,9 +280,22 @@ export default function Home() {
                         {step.body}
                       </p>
                       {index === 0 ? (
-                        <div className="mt-5 rounded-2xl border border-white/10 bg-black/30 p-4 font-mono text-sm leading-6 text-white/64">
-                          {setupPrompt}
-                        </div>
+                        <>
+                          <div className="mt-5 rounded-2xl border border-white/10 bg-black/30 p-4">
+                            <div className="mb-3 flex items-center justify-between gap-3">
+                              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+                                Prompt v{setupPromptVersion}
+                              </span>
+                              <span className="text-xs font-semibold text-white/42">
+                                Full prompt copies to clipboard
+                              </span>
+                            </div>
+                            <p className="font-mono text-sm leading-6 text-white/64">
+                              {setupPromptPreview}
+                            </p>
+                          </div>
+                          <PromptCopyButtons prompt={setupPrompt} />
+                        </>
                       ) : null}
                     </div>
                     <p className="rounded-full border border-white/10 bg-black/20 px-4 py-2 text-sm font-semibold text-white/58 lg:mt-1 lg:whitespace-nowrap">
